@@ -1,39 +1,29 @@
 package leetcode;
 
+//344  Write a function that reverses a string. The input string is given as an array of characters s.
+class Solution {
+	public void reverseString(char[] s) {
+		int mid = s.length / 2;
+		int last = s.length - 1;
+		for (int i = 0; i <= mid && last >= mid; i++, last--) { // 0
+			char ch = s[i];
+			s[i] = s[last];
+			s[last] = ch;
+		}
+		for (char ch : s) {
+			System.out.print(ch + " ");
+
+		}
+	}
+}
+
 public class demo {
 
 	public static void main(String x[]) {
-		StringBuilder sb = new StringBuilder();
 
-		String str = "ka29p3d7e45";
-		boolean flag = false;
-		for (char i = 0; i < str.length() - 1; i++) {
-			char ch = str.charAt(i);
-
-			if ((int) ch >= 48 && 57 >= (int) ch) {
-				sb.append(ch);
-				flag = true;
-			} else if (flag) {
-				sb.append(" ");
-				flag = false;
-			}
-		}
-		System.out.println(sb + "\n");
-		String st = sb.toString();
-		String arr[] = st.split(" ");
-
-		for (int i = 0; i < arr.length; i++) {
-			int a = Integer.parseInt(arr[i]);
-			boolean check = true;
-			for (int j = 2; j <= a / 2; j++) {
-				if (a % j == 0) {
-					check = false;
-					break;
-				}
-			}
-			if (check)
-				System.out.println(a);
-		}
+		Solution s = new Solution();
+		char ch[] = { 'a', 'a', 'k' };
+		s.reverseString(ch);
 
 	}
 }
