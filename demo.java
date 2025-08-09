@@ -1,29 +1,42 @@
+// 8. String to Integer (atoi)
 package leetcode;
 
-//344  Write a function that reverses a string. The input string is given as an array of characters s.
 class Solution {
-	public void reverseString(char[] s) {
-		int mid = s.length / 2;
-		int last = s.length - 1;
-		for (int i = 0; i <= mid && last >= mid; i++, last--) { // 0
-			char ch = s[i];
-			s[i] = s[last];
-			s[last] = ch;
+	public int myAtoi(String s) {
+		StringBuilder sb = new StringBuilder();
+		s = s.trim();
+		for (int i = 0; i < s.length(); i++) {
+			char ch = s.charAt(i);
+			if ((i == 0 && (ch == '-' || ch == '+')) || (ch >= '0' && ch <= '9')) {
+				sb.append(ch);
+			} else if (i >= 0 && !(ch >= '0' && ch <= '9')) {
+				break;
+			}
 		}
-		for (char ch : s) {
-			System.out.print(ch + " ");
+		if (sb.length() == 1 && !(s.charAt(0) >= '0' && s.charAt(0) <= '9')) {
+			sb.setCharAt(0, '0');
+		} else if (sb.length() == 0)
+			return 0;
 
+		try {
+			Integer.parseInt(sb.toString());
+		} catch (Exception e) {
+			if (sb.charAt(0) == '-') {
+				return Integer.MIN_VALUE;
+			} else {
+				return Integer.MAX_VALUE;
+			}
+			// TODO: handle exception
 		}
+		return Integer.parseInt(sb.toString());
 	}
 }
 
 public class demo {
-
-	public static void main(String x[]) {
-
+	public static void main(String args[]) {
+		String str = " b11228552307";
 		Solution s = new Solution();
-		char ch[] = { 'a', 'a', 'k' };
-		s.reverseString(ch);
 
+		System.out.println(s.myAtoi(str));
 	}
 }
